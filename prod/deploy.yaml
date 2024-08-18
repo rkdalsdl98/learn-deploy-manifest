@@ -8,16 +8,29 @@ spec:
   selector:
     matchLabels:
       app: deploy-server
+      db: deploy-db
   template:
     metadata:
       labels:
         app: deploy-server
+        db: deploy-db
     spec:
       containers:
       - name: deploy-server
-        image: kkangmin2/learn-deploy:v1.0.0
+        image: kkangmin2/learn-deploy-server:0.34
+        imagePullPolicy: Always
         envFrom:
           - secretRef:
               name: deploy-secret
         ports:
-        - containerPort: 80
+        - containerPort: 3000
+      - name: deploy-db
+        image: kkangmin2/learn-deploy-db:0.1
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: deploy-secret-pg
+        ports:
+        - containerPort: 5432
+      imagePullSecrets:
+      - name: regcred
