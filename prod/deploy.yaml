@@ -25,6 +25,9 @@ spec:
       - name: deploy-server
         image: kkangmin2/learn-deploy-server:0.58
         imagePullPolicy: Always
+        volumeMounts:
+        - name: deploy-pv
+          mountPath: /mnt/logs
         envFrom:
           - secretRef:
               name: deploy-secret
@@ -33,9 +36,6 @@ spec:
       - name: deploy-db
         image: kkangmin2/learn-deploy-db:0.1
         imagePullPolicy: Always
-        volumeMounts:
-          - name: deploy-pv
-            mountPath: /mnt/logs
         envFrom:
         - secretRef:
             name: deploy-secret-pg
