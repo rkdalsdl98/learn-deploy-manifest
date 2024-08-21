@@ -35,7 +35,7 @@ spec:
         imagePullPolicy: Always
         volumeMounts:
           - name: deploy-pv
-            mountPath: "/usr/share/logs"
+            mountPath: /mnt/logs
         envFrom:
         - secretRef:
             name: deploy-secret-pg
