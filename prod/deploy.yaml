@@ -23,7 +23,7 @@ spec:
             claimName: deploy-pvc
       containers:
       - name: deploy-server
-        image: kkangmin2/learn-deploy-server:0.58
+        image: kkangmin2/learn-deploy-server:0.59
         imagePullPolicy: Always
         volumeMounts:
         - name: deploy-pv
